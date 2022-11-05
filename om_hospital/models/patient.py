@@ -12,9 +12,7 @@ class HospitalPatient(models.Model):
     note = fields.Text(string='Description')
     state = fields.Selection([
         ('draft', 'Draft'),
-        ('new', 'Valid'),
-        ('sent', 'Sent'),
-        ('used', 'Used'),
-        ('expired', 'Expired'),
+        ('confirm', 'Confirmed'),
+        ('done', 'Done'),
         ('cancel', 'Cancelled')
-    ], required=True, default='new')
+    ], string='Status', default='draft')
