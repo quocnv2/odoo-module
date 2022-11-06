@@ -1,4 +1,4 @@
-from odoo import fields, api, models
+from odoo import fields, api, models, _
 
 
 class HospitalPatient(models.Model):
@@ -9,6 +9,8 @@ class HospitalPatient(models.Model):
     age = fields.Integer(string='Age', tracking=True)
     gender = fields.Selection([('male', "Male"), ('female', "Female"), ('other', "Other")], default='other',
                               required=True)
+    reference = fields.Char(string="Order Reference", required=False, copy=False, readonly=True,
+                            default=lambda self: _('New'), store=True)
     note = fields.Text(string='Description')
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -36,4 +38,6 @@ class HospitalPatient(models.Model):
         # print("Successfully overided create method")
         if not vals.get('note'):
             vals['note'] = 'New Patient'
+        if vals.get('reference', _('New')) == _('New'):
+            vals['reference'] = self.env['ir.sequence'].next_by_code('hospital.patient') or _('New')
         return super(HospitalPatient, self).create(vals)
