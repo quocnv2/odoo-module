@@ -31,6 +31,9 @@
                         <button id="button_draft" name="action_draft" type="object" string="Set To Draft"
                                 states="cancel"
                                 class="btn-primary"/>
+                        <button id="button_create_appointment" name="%(action_create_appointment)d" type="action"
+                                string="Create Appointment"
+                                class="btn-primary"/>
                         <button id="button_cancel" name="action_cancel" type="object" string="Cancel"
                                 states="draft,done,confirm"
                         />
