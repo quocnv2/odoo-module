@@ -20,10 +20,5 @@
               action="action_hospital_kids"
               sequence="20"/>
 
-    <!--    <menuitem id="menu_kids"-->
-    <!--              name="Kids"-->
-    <!--              parent="menu_patient_root"-->
-    <!--              action="action_hospital_kids"-->
-    <!--              />-->
 
 </odoo>
