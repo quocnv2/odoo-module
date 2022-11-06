@@ -21,6 +21,7 @@ class HospitalPatient(models.Model):
 
     responsible_id = fields.Many2one('res.partner', string="Responsible ID")
     appointment_count = fields.Integer(string='Appointment Count', tracking=True, compute='_compute_appointment_count')
+    image = fields.Binary(string="Patient Image")
 
     def action_confirm(self):
         self.state = 'confirm'
