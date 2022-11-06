@@ -14,6 +14,7 @@
             </p>
         </field>
     </record>
+
     <menuitem id="menu_kids"
               name="Kids"
               parent="hospital_patient_root"
