@@ -13,6 +13,7 @@
         'data/data.xml',
         'views/patient.xml',
         'views/sale.xml',
+        'views/kids_view.xml',
     ],
 
     'installable': True,
