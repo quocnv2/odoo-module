@@ -10,6 +10,8 @@ class HospitalAppointment(models.Model):
                        default=lambda self: _('New'), store=True)
     patient_id = fields.Many2one('hospital.patient', string="Patient", required=True)
     age = fields.Integer(string='Age', related='patient_id.age', tracking=True)
+    gender = fields.Selection([('male', "Male"), ('female', "Female"), ('other', "Other")], default='other',
+                              required=True)
     note = fields.Text(string='Description')
     state = fields.Selection([
         ('draft', 'Draft'),
@@ -38,3 +40,13 @@ class HospitalAppointment(models.Model):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('hospital.appointment') or _('New')
         return super(HospitalAppointment, self).create(vals)
+
+    @api.onchange('patient_id')
+    def onchange_patient_id(self):
+        if self.patient_id:
+            if self.patient_id.gender:
+                self.gender = self.patient_id.gender
+            if self.patient_id.note:
+                self.note = self.patient_id.note
+        else:
+            self.gender = ''
