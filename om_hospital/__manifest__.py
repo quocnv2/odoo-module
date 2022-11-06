@@ -15,6 +15,7 @@
         'views/sale.xml',
         'views/kids_view.xml',
         'views/patient_gender_views.xml',
+        'views/appointment.xml',
     ],
 
     'installable': True,
