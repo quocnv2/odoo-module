@@ -105,5 +105,10 @@
                   parent="menu_appointment_root"
                   action="action_create_appointment"
                   sequence="20"/>
+        <menuitem id="menu_search_appointment"
+                  name="Search Appointments"
+                  parent="menu_appointment_root"
+                  action="action_search_appointment"
+                  sequence="20"/>
     </data>
 </odoo>
