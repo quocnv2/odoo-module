@@ -47,3 +47,8 @@ class HospitalPatient(models.Model):
         for rec in self:
             appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
             rec.appointment_count = appointment_count
+
+    @api.model
+    def default_get(self, vals):
+        result = super(HospitalPatient, self).default_get(vals)
+        return result
