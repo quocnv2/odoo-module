@@ -20,6 +20,7 @@ class HospitalPatient(models.Model):
     ], string='Status', default='draft', tracking=True)
 
     responsible_id = fields.Many2one('res.partner', string="Responsible ID")
+    appointment_count = fields.Integer(string='Appointment Count', tracking=True, compute='_compute_appointment_count')
 
     def action_confirm(self):
         self.state = 'confirm'
@@ -41,3 +42,8 @@ class HospitalPatient(models.Model):
         if vals.get('reference', _('New')) == _('New'):
             vals['reference'] = self.env['ir.sequence'].next_by_code('hospital.patient') or _('New')
         return super(HospitalPatient, self).create(vals)
+
+    def _compute_appointment_count(self):
+        for rec in self:
+            appointment_count = self.env['hospital.appointment'].search_count([('patient_id', '=', rec.id)])
+            rec.appointment_count = appointment_count
