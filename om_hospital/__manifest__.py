@@ -15,6 +15,7 @@
         'wizard/search_appointment_view.xml',
         'views/patient.xml',
         'views/sale.xml',
+        'views/doctor.xml',
         'views/kids_view.xml',
         'views/patient_gender_views.xml',
         'views/appointment.xml',
