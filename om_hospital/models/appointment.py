@@ -9,6 +9,7 @@ class HospitalAppointment(models.Model):
     name = fields.Char(string="Order Reference", required=False, copy=False, readonly=True,
                        default=lambda self: _('New'), store=True)
     patient_id = fields.Many2one('hospital.patient', string="Patient", required=True)
+    doctor_id = fields.Many2one('hospital.doctor', string="Hospital Doctor", required=True)
     age = fields.Integer(string='Age', related='patient_id.age', tracking=True)
     gender = fields.Selection([('male', "Male"), ('female', "Female"), ('other', "Other")], default='other',
                               required=True)
