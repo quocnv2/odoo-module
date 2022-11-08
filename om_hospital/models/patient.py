@@ -20,6 +20,7 @@ class HospitalPatient(models.Model):
     ], string='Status', default='draft', tracking=True)
 
     responsible_id = fields.Many2one('res.partner', string="Responsible ID")
+    appointment_ids = fields.One2many('hospital.appointment', 'patient_id', string='Appointment ID')
     appointment_count = fields.Integer(string='Appointment Count', tracking=True, compute='_compute_appointment_count')
     image = fields.Binary(string="Patient Image")
 

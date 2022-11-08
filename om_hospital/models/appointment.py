@@ -24,6 +24,9 @@ class HospitalAppointment(models.Model):
     date_checkup = fields.Datetime(string="Check Up Time")
     prescription = fields.Text(string="Prescription")
 
+    prescription_line_ids = fields.One2many('appointment.prescription.lines', 'appointment_id',
+                                            string='Prescription Line ID')
+
     def action_confirm(self):
         self.state = 'confirm'
 
@@ -53,3 +56,12 @@ class HospitalAppointment(models.Model):
                 self.note = self.patient_id.note
         else:
             self.gender = ''
+
+
+class AppointmentPrescriptionLines(models.Model):
+    _name = 'appointment.prescription.lines'
+    _description = "Appointment Prescription Lines"
+
+    name = fields.Char(string="Medicine", required=True)
+    qty = fields.Integer(string="Quantity")
+    appointment_id = fields.Many2one('hospital.appointment', string="Appointment ID")
