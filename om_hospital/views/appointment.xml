@@ -52,9 +52,17 @@
                             <group>
                                 <field name="doctor_id"/>
                                 <field name="date_appointment"/>
+                                <field name="date_checkup"/>
                                 <field name="note"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Doctor Prescription" name="doctor_prescription">
+                                <group>
+                                    <field name="prescription"/>
+                                </group>
+                            </page>
+                        </notebook>
                     </sheet>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>
