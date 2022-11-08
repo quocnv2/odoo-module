@@ -19,3 +19,10 @@ class HospitalDoctor(models.Model):
     note = fields.Text(string='Description')
     image = fields.Binary(string="Patient Image")
 
+    def copy(self, default=None):
+        if default is None:
+            default = {}
+        if not default.get('doctor_name'):
+            default['doctor_name'] = _("%s (Copy)", self.doctor_name)
+        default['note'] = 'copy record'
+        return super(HospitalDoctor, self).copy(default)
