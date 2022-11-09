@@ -19,6 +19,9 @@
         'views/kids_view.xml',
         'views/patient_gender_views.xml',
         'views/appointment.xml',
+        'report/report.xml',
+        'report/patient_details_template.xml',
+        'report/patient_card.xml',
     ],
 
     'installable': True,
