@@ -1,4 +1,5 @@
 from odoo import fields, api, models, _
+from odoo.exceptions import ValidationError
 
 
 class HospitalPatient(models.Model):
@@ -54,3 +55,16 @@ class HospitalPatient(models.Model):
     def default_get(self, vals):
         result = super(HospitalPatient, self).default_get(vals)
         return result
+
+    @api.constrains('name')
+    def check_name(self):
+        for rec in self:
+            patients = self.env['hospital.patient'].search([('name', '=', rec.name), ('id', '!=', rec.id)])
+            if patients:
+                raise ValidationError("Name %s Already Exists" % rec.name)
+
+    @api.constrains('age')
+    def check_age(self):
+        for rec in self:
+            if rec.age == 0:
+                raise ValidationError("Age cannot be zero")
