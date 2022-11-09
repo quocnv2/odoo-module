@@ -7,7 +7,7 @@
 """,
     'category': 'Other',
     'website': 'https://www.odoo.com',
-    'depends': ['base', 'sale', 'mail'],
+    'depends': ['base', 'sale', 'mail', 'report_xlsx'],
     'data': [
         'security/ir.model.access.csv',
         'data/data.xml',
